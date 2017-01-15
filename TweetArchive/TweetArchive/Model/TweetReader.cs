@@ -54,10 +54,9 @@ namespace TweetArchive.Model
                         }
                         transAction.Commit();
 
-                        System.Diagnostics.Debug.WriteLine("Number of Records: " + realm.All<TweetViewModel>().Count().ToString());
  
 
-                        await Task.Delay(10000);
+                        await Task.Delay(5000);
                     }
                 }
                 else

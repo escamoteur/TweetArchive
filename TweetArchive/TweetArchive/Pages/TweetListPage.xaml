@@ -1,16 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<xamForms:ReactiveContentPage x:TypeArguments="pageModels:TweetListPageModel" xmlns="http://xamarin.com/schemas/2014/forms"
+<xamvvm:BaseContentPageRxUI x:TypeArguments="pageModels:TweetListPageModel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xamvvm="clr-namespace:Xamvvm;assembly=Xamvvm.Forms.RxUI"
              xmlns:pageModels="clr-namespace:TweetArchive.PageModels;assembly=TweetArchive"
              xmlns:xamForms="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
              x:Class="TweetArchive.Pages.TweetListPage"
              Title="Tweets">
-  <xamForms:ReactiveContentPage.Content>
+  <xamvvm:BaseContentPageRxUI.Content>
     <StackLayout>
         <Label x:Name="NumOfTweets" VerticalOptions="Center" HorizontalOptions="Center" />
-        <Button Text="Test" Clicked="Button_OnClicked"/>
-    </StackLayout>
-  </xamForms:ReactiveContentPage.Content>
 
-</xamForms:ReactiveContentPage>
+      <Button Text="Test" Clicked="Button_OnClicked"/>
+    </StackLayout>
+  </xamvvm:BaseContentPageRxUI.Content>
+
+</xamvvm:BaseContentPageRxUI>

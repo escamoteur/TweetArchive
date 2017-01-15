@@ -12,7 +12,7 @@ using Xamvvm;
 
 namespace TweetArchive.Pages
 {
-    public partial class TweetListPage : IBasePage<TweetListPageModel>
+    public partial class TweetListPage 
     {
         public TweetListPage()
         {
@@ -20,17 +20,19 @@ namespace TweetArchive.Pages
 
             this.WhenActivated(d =>
             {
-                this.OneWayBind(ViewModel, vm => vm.TweetViewModels, v => v.NumOfTweets.Text, x =>
-                {
-                    return x.Count.ToString();
-                });
+                ViewModel = (TweetListPageModel)BindingContext;
 
-                this.WhenAnyValue(x => x.ViewModel.TweetViewModels).Subscribe(OnNext);
+                this.OneWayBind(ViewModel, vm => vm.TweetViewModels.Count, v => v.NumOfTweets.Text, x=>x.ToString());
+
+                //We could also easily observe properties of the PageModel
+                //this.WhenAnyValue(x => x.ViewModel.TweetViewModels.Count).Subscribe(OnNext);
             });
         }
 
-        private void OnNext(IRealmCollection<TweetViewModel> tweetViewModels)
+
+        private void OnNext(int numberOfTweets)
         {
+            System.Diagnostics.Debug.WriteLine("Number of Records: " + numberOfTweets);
         }
 
         private void Button_OnClicked(object sender, EventArgs e)
