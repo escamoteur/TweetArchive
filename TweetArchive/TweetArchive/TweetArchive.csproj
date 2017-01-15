@@ -38,6 +38,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\ConfigurationService.cs" />
+    <Compile Include="Model\RealmDB.cs" />
+    <Compile Include="Model\TweetReader.cs" />
     <Compile Include="PageModels\SettingsPageModel.cs" />
     <Compile Include="PageModels\TweetListPageModel.cs" />
     <Compile Include="Pages\MainPage.xaml.cs">
@@ -158,7 +161,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\" />
     <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
