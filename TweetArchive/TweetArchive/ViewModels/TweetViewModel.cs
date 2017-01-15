@@ -20,9 +20,9 @@ namespace TweetArchive.ViewModels
 
         public bool Favourited { get; set; }
 
-        public Entities Entities { get; set; }
+ //       public Entities Entities { get; set; }
 
-        public Entities ExtendedEntities { get; set; }
+//        public Entities ExtendedEntities { get; set; }
 
         public int FavoriteCount { get; set; }
 

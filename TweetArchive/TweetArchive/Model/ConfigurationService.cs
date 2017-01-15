@@ -12,12 +12,14 @@ namespace TweetArchive.Model
     {
         string ApiKey { get; }
         string ApiSecret { get; }
-	}
+        string TwitterAccount { get; }
+    }
 
     class TweetAcriveConfiguration : IConfiguration
     {
         public string ApiKey { get; set; }
         public string ApiSecret { get; set; }
+        public string TwitterAccount { get; set; }
     }
 
 

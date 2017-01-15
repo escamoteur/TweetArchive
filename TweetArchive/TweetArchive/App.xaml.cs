@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TweetArchive.Model;
 using TweetArchive.PageModels;
 using Xamarin.Forms;
 using Xamvvm;
@@ -10,6 +11,7 @@ namespace TweetArchive
 {
     public partial class App : Application
     {
+        private TweetReader TwitterService;
         public App()
         {
             InitializeComponent();
@@ -21,6 +23,9 @@ namespace TweetArchive
             XamvvmCore.SetCurrentFactory(factory);
             try
             {
+             
+                TwitterService = new TweetReader();
+                TwitterService.StartService();  
                 MainPage = this.GetPageFromCache<MainPagePageModel>() as Page;
 
             }
