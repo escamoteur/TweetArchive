@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,10 @@ namespace TweetArchive.Model
     {
         public void StartService()
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<BoxKite.Twitter.Models.Tweet, TweetViewModel>().IgnoreAllPropertiesWithAnInaccessibleSetter());
+            Mapper.Initialize(
+                cfg =>
+                    cfg.CreateMap<BoxKite.Twitter.Models.Tweet, TweetViewModel>()
+                        .IgnoreAllPropertiesWithAnInaccessibleSetter());
 
             var config = Locator.Current.GetService<IConfiguration>();
 
@@ -27,32 +31,49 @@ namespace TweetArchive.Model
 
                 if (twitterauth)
                 {
+
+                    var realm = RealmDB.Instance;
+                    realm.Write(() =>
+                    {
+                        realm.RemoveAll<TweetViewModel>();
+                    });
+
                     while (true)
                     {
-                        var timeline = await session.GetUserTimeline(config.TwitterAccount,count:30);
-
-                        var realm = RealmDB.Instance;
-
-                        //For this first Test we clear the DB completely before each Update
-                        //realm.RemoveAll<TweetViewModel>();
-
-                        var transAction = realm.BeginWrite();
-
-                        foreach (var tweet in timeline)
+                        try
                         {
+                            var timeline = await session.GetUserTimeline(config.TwitterAccount, count: 4).ConfigureAwait(true);
 
-                            var PersistentTweet = new TweetViewModel();
-                            try
+
+                            //For this first Test we clear the DB completely before each Update
+                            //realm.RemoveAll<TweetViewModel>();
+
+                            realm = RealmDB.Instance;
+                            var transAction = realm.BeginWrite();
+
+                            foreach (var tweet in timeline)
                             {
-                                Mapper.Map(tweet, PersistentTweet);
-                                realm.Add(PersistentTweet);
+
+                                var PersistentTweet = new TweetViewModel();
+                                try
+                                {
+                                    Mapper.Map(tweet, PersistentTweet);
+                                    realm.Add(PersistentTweet);
+                                }
+                                catch (Exception ex)
+                                {
+                                    throw;
+                                }
                             }
-                            catch (Exception ex)
-                            {
-                               throw;
-                            }
+                            transAction.Commit();
+
                         }
-                        transAction.Commit();
+                        catch (Exception exception)
+                        {
+                         
+                            Debug.WriteLine(exception.Message);   
+                            throw;
+                        }
 
  
 

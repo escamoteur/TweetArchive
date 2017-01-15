@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xamForms:ReactiveViewCell x:TypeArguments="viewModels:TweetViewModel" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:xamForms="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+                  xmlns:viewModels="clr-namespace:TweetArchive.ViewModels;assembly=TweetArchive"
+                  x:Class="TweetArchive.Views.TweetViewCell">
+    <Label x:Name="TweetMessage"/>
+</xamForms:ReactiveViewCell>

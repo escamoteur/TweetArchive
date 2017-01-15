@@ -20,9 +20,12 @@ namespace TweetArchive.Pages
 
             this.WhenActivated(d =>
             {
+
+                //This is a Hack because somehow the ViewModel does not get set automatically from Xamvvm
                 ViewModel = (TweetListPageModel)BindingContext;
 
                 this.OneWayBind(ViewModel, vm => vm.TweetViewModels.Count, v => v.NumOfTweets.Text, x=>x.ToString());
+                this.OneWayBind(ViewModel, vm => vm.TweetViewModels, v => v.TweetListView.ItemsSource);
 
                 //We could also easily observe properties of the PageModel
                 //this.WhenAnyValue(x => x.ViewModel.TweetViewModels.Count).Subscribe(OnNext);

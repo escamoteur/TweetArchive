@@ -4,13 +4,22 @@
              xmlns:xamvvm="clr-namespace:Xamvvm;assembly=Xamvvm.Forms.RxUI"
              xmlns:pageModels="clr-namespace:TweetArchive.PageModels;assembly=TweetArchive"
              xmlns:xamForms="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+             xmlns:views="clr-namespace:TweetArchive.Views;assembly=TweetArchive"
              x:Class="TweetArchive.Pages.TweetListPage"
              Title="Tweets">
   <xamvvm:BaseContentPageRxUI.Content>
     <StackLayout>
-        <Label x:Name="NumOfTweets" VerticalOptions="Center" HorizontalOptions="Center" />
+       <Label x:Name="NumOfTweets" VerticalOptions="Start" HorizontalOptions="Center" />
 
-      <Button Text="Test" Clicked="Button_OnClicked"/>
+      <ListView x:Name="TweetListView" HasUnevenRows="True">
+          <ListView.ItemTemplate>
+            <DataTemplate>
+              <views:TweetViewCell ViewModel="{Binding}"  />  
+            </DataTemplate>
+          </ListView.ItemTemplate>
+        </ListView>
+      
+      <Button Text="Test" Clicked="Button_OnClicked" VerticalOptions="End"/>
     </StackLayout>
   </xamvvm:BaseContentPageRxUI.Content>
 
