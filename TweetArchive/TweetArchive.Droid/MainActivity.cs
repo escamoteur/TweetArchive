@@ -22,6 +22,8 @@ namespace TweetArchive.Droid
 
             base.OnCreate(bundle);
 
+
+
             //BoxKite.Twitter need a Platformspecific adapter, so we create it here and register in in Splat so that we can access it in the PCL
             Locator.CurrentMutable.RegisterConstant(new AndroidPlatformAdaptor(),typeof(IPlatformAdaptor));
 
@@ -36,9 +38,12 @@ namespace TweetArchive.Droid
             }
 
 
-
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
+
+#if DEBUG
+            UISleuth.Inspector.Init();
+#endif
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿{
   "ApiKey": "your APIKey",
-  "ApiSecret": "Your API Secret"
+  "ApiSecret": "Your API Secret",
+  "TwitterAccount" : "Twitter Account you want to display"
 }
