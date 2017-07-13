@@ -33,6 +33,19 @@ namespace TweetArchive.Pages
         }
 
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            System.Diagnostics.Debug.WriteLine("++++++++++++++++++++++++++++++TweetListPage OnAppearing");
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            System.Diagnostics.Debug.WriteLine("++++++++++++++++++++++++++++++++TweetListPage OnDisappearing");
+
+        }
+
         private void OnNext(int numberOfTweets)
         {
             System.Diagnostics.Debug.WriteLine("Number of Records: " + numberOfTweets);

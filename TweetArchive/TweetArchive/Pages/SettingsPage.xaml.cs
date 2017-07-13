@@ -18,5 +18,18 @@ namespace TweetArchive.Pages
         {
             InitializeComponent();
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            System.Diagnostics.Debug.WriteLine("----------------------------SettingsPage OnAppearing");
+
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            System.Diagnostics.Debug.WriteLine("------------------------------SettingsPage OnDisappearing");
+        }
     }
 }

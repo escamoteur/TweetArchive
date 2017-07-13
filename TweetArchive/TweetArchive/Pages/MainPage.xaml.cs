@@ -13,5 +13,13 @@ namespace TweetArchive
         {
             InitializeComponent();
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+        }
     }
+
+ 
+    
 }
